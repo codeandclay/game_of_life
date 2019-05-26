@@ -41,5 +41,10 @@ describe GameOfLife do
       cell = GameOfLife::Cell.new(state: @dead_state)
       cell.state.must_equal @dead_state
     end
+
+    it 'should generate a cell with a random state' do
+      cell = GameOfLife::Cell.new_with_random_state
+      [@alive_state, @dead_state].must_include cell.state
+    end
   end
 end

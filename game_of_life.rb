@@ -54,5 +54,9 @@ class GameOfLife
     end
 
     attr_accessor :state
+
+    def self.new_with_random_state
+      GameOfLife::Cell.new(state: State.random)
+    end
   end
 end
