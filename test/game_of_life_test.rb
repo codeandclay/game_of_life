@@ -67,5 +67,16 @@ describe GameOfLife do
         item.is_a?(GameOfLife::Cell)
       end.count.must_equal @random_grid.flatten.count
     end
+
+    it 'should return a new grid when given an existing grid' do
+      new_grid = GameOfLife::Grid.new_from(grid: @random_grid)
+      new_grid.must_equal @random_grid
+    end
+
+    it 'should return a grid with values transformed when block is given' do
+      grid_of_ones = Array.new(@size) { Array.new(@size, 1) }
+      new_grid = GameOfLife::Grid.new_from(grid: @random_grid) { 1 }
+      new_grid.must_equal grid_of_ones
+    end
   end
 end

@@ -65,5 +65,17 @@ class GameOfLife
     def self.new_random(size:)
       Array.new(size) { Array.new(size, Cell.new_with_random_state) }
     end
+
+    # Returns a new grid from a given grid. A block may be given to transform
+    # each item in the grid.
+    def self.new_from(grid:)
+      grid.map do |row|
+        row.map do |cell|
+          next cell unless block_given?
+
+          yield cell
+        end
+      end
+    end
   end
 end
