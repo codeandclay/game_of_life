@@ -13,4 +13,21 @@ describe GameOfLife do
       GameOfLife::State.dead.must_equal :dead
     end
   end
+
+  describe GameOfLife::Cell do
+    before do
+      @alive_state = GameOfLife::State.alive
+      @dead_state = GameOfLife::State.dead
+    end
+
+    it 'should report the expected state when alive' do
+      cell = GameOfLife::Cell.new(state: @alive_state)
+      cell.state.must_equal @alive_state
+    end
+
+    it 'should report the expected states when dead' do
+      cell = GameOfLife::Cell.new(state: @dead_state)
+      cell.state.must_equal @dead_state
+    end
+  end
 end

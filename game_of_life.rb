@@ -41,4 +41,14 @@ class GameOfLife
       :dead
     end
   end
+
+  # An indiviudal cell.
+  # It is aware of its own state and the state of its neighbours.
+  class Cell
+    def initialize(state:)
+      @state = state
+    end
+
+    attr_accessor :state
+  end
 end
