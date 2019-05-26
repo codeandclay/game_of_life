@@ -41,6 +41,8 @@ class GameOfLife
       end
     end
 
+    def self.random
+      STATES.sample
     end
   end
 

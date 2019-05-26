@@ -12,6 +12,18 @@ describe GameOfLife do
     it 'should report the expected state for dead' do
       GameOfLife::State.dead.must_equal :dead
     end
+
+    it 'should return a random state' do
+      GameOfLife::State::STATES.must_include GameOfLife::State.random
+    end
+
+    it 'should return a random state with a satisfactory randomness' do
+      states = (0...100).to_a.map do
+        GameOfLife::State.random
+      end.uniq
+
+      states.count.must_equal GameOfLife::State::STATES.count
+    end
   end
 
   describe GameOfLife::Cell do
