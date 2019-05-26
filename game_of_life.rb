@@ -59,4 +59,11 @@ class GameOfLife
       GameOfLife::Cell.new(state: State.random)
     end
   end
+
+  # Represent the two dimensional grid on which the cells are placed.
+  class Grid
+    def self.new_random(size:)
+      Array.new(size) { Array.new(size, Cell.new_with_random_state) }
+    end
+  end
 end

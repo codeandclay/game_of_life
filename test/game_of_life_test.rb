@@ -47,4 +47,25 @@ describe GameOfLife do
       [@alive_state, @dead_state].must_include cell.state
     end
   end
+
+  describe GameOfLife::Grid do
+    before do
+      @size = 15
+      @random_grid = GameOfLife::Grid.new_random(size: @size)
+    end
+
+    it 'should create a two dimensional array' do
+      # A grid of the dimension size will have size*size cells
+      total_cell_count = @size * @size
+      cells = @random_grid.flatten
+      cells.count.must_equal total_cell_count
+    end
+
+    it 'should return a grid with a cell for each position' do
+      # The total item count will equal the total GameOfLife::Cell count
+      @random_grid.flatten.select do |item|
+        item.is_a?(GameOfLife::Cell)
+      end.count.must_equal @random_grid.flatten.count
+    end
+  end
 end
