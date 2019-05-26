@@ -29,16 +29,18 @@
 # the preceding one. The rules continue to be applied repeatedly to create
 # further generations.
 class GameOfLife
-  # Each cell has a state: :alive or :dead
   # When initialising a new cell, this class can be used when defining its
   # state.
+  # Each cell has a state: :alive or :dead
   class State
-    def self.alive
-      :alive
+    STATES = %i[alive dead].freeze
+
+    STATES.each do |state|
+      define_singleton_method(state) do
+        state
+      end
     end
 
-    def self.dead
-      :dead
     end
   end
 
