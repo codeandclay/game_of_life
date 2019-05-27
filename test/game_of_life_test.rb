@@ -3,32 +3,32 @@
 require_relative 'test_helper'
 require_relative '../game_of_life'
 
-describe GameOfLife::State do
+describe GameOfLife::States do
   it 'should report the expected state for alive' do
-    GameOfLife::State.alive.must_equal :alive
+    GameOfLife::States.alive.must_equal :alive
   end
 
   it 'should report the expected state for dead' do
-    GameOfLife::State.dead.must_equal :dead
+    GameOfLife::States.dead.must_equal :dead
   end
 
   it 'should return a random state' do
-    GameOfLife::State::STATES.must_include GameOfLife::State.random
+    GameOfLife::States::STATES.must_include GameOfLife::States.random
   end
 
   it 'should return a random state with a satisfactory randomness' do
     states = (0...100).to_a.map do
-      GameOfLife::State.random
+      GameOfLife::States.random
     end.uniq
 
-    states.count.must_equal GameOfLife::State::STATES.count
+    states.count.must_equal GameOfLife::States::STATES.count
   end
 end
 
 describe GameOfLife::Cell do
   before do
-    @alive_state = GameOfLife::State.alive
-    @dead_state = GameOfLife::State.dead
+    @alive_state = GameOfLife::States.alive
+    @dead_state = GameOfLife::States.dead
   end
 
   it 'should report the expected state when alive' do

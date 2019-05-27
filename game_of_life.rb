@@ -32,7 +32,7 @@ class GameOfLife
   # When initialising a new cell, this class can be used when defining its
   # state.
   # Each cell has a state: :alive or :dead
-  class State
+  module States
     STATES = %i[alive dead].freeze
 
     STATES.each do |state|
@@ -56,7 +56,7 @@ class GameOfLife
     attr_accessor :state
 
     def self.new_with_random_state
-      GameOfLife::Cell.new(state: State.random)
+      GameOfLife::Cell.new(state: States.random)
     end
   end
 
