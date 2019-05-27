@@ -61,9 +61,9 @@ class GameOfLife
   end
 
   # Represent the two dimensional grid on which the cells are placed.
-  class Grid
+  class Grid < Array
     def self.new_random(size:)
-      Array.new(size) { Array.new(size, Cell.new_with_random_state) }
+      Grid.new(size) { Grid.new(size, Cell.new_with_random_state) }
     end
 
     # Returns a new grid from a given grid. A block may be given to transform
