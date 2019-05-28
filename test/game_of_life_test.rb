@@ -50,7 +50,7 @@ end
 describe GameOfLife::Grid do
   before do
     @size = 15
-    @random_grid = GameOfLife::Grid.new_random(size: @size)
+    @random_grid = GameOfLife::Grid.new_random(size: @size).to_a
   end
 
   it 'should create a two dimensional array' do

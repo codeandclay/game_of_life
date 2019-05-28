@@ -61,9 +61,18 @@ class GameOfLife
   end
 
   # Represent the two dimensional grid on which the cells are placed.
-  class Grid < Array
+  class Grid
+    def initialize(size, &block)
+      @size = size
+      @block = block
+    end
+
+    def to_a
+      @to_a ||= Array.new(size) { Array.new(size) { block.call } }
+    end
+
     def self.new_random(size:)
-      Grid.new(size) { Grid.new(size, Cell.new_with_random_state) }
+      Grid.new(size) { Cell.new_with_random_state }
     end
 
     # Returns a new grid from a given grid. A block may be given to transform
@@ -77,5 +86,9 @@ class GameOfLife
         end
       end
     end
+
+    private
+
+    attr_accessor :size, :block
   end
 end
