@@ -71,6 +71,20 @@ class GameOfLife
       @to_a ||= Array.new(size) { Array.new(size) { block.call } }
     end
 
+    # Maps items to the coordinates of their grid cells.
+    # eg: `obj => [1, 1]`
+    def to_h
+      @to_h ||= to_a.flat_map.with_index do |row, row_index|
+        row.map.with_index do |cell_item, column_index|
+          { cell_item => [row_index, column_index] }
+        end
+      end.reduce(&:merge)
+    end
+
+    def coordinates_of(item)
+      to_h[item]
+    end
+
     def self.new_random(size:)
       Grid.new(size) { Cell.new_with_random_state }
     end

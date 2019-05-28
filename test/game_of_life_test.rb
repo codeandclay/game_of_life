@@ -77,4 +77,10 @@ describe GameOfLife::Grid do
     new_grid = GameOfLife::Grid.new_from(grid: @random_grid) { 1 }
     new_grid.must_equal grid_of_ones
   end
+
+  it 'should give the grid coordinates of a cell when given that cell' do
+    grid = GameOfLife::Grid.new_random(size: 3)
+    cell = grid.to_a[0][0]
+    grid.coordinates_of(cell).must_equal [0, 0]
+  end
 end
