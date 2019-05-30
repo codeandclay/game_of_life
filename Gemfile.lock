@@ -32,6 +32,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
     ruby-progressbar (1.10.0)
+    tty-cursor (0.7.0)
     unicode-display_width (1.6.0)
     yard (0.9.19)
 
@@ -45,6 +46,7 @@ DEPENDENCIES
   pry-doc
   rake
   rubocop (~> 0.70.0)
+  tty-cursor
 
 BUNDLED WITH
    2.0.1
