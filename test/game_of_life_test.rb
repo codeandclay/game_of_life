@@ -50,7 +50,7 @@ describe GameOfLife::Cell do
     neighbours = (1..2).map { GameOfLife::Cell.new(state: GameOfLife::States.alive) } +
                  (1..6).map { GameOfLife::Cell.new(state: GameOfLife::States.dead) }
     alive_cell = GameOfLife::Cell.new(state: GameOfLife::States.alive)
-    subsequent_cell = GameOfLife::Cell.subsequent_state(cell: alive_cell, neighbours: neighbours)
+    subsequent_cell = alive_cell.subsequent_state(neighbours: neighbours)
 
     subsequent_cell.alive?.must_equal true
   end
@@ -59,7 +59,7 @@ describe GameOfLife::Cell do
     neighbours = (1..3).map { GameOfLife::Cell.new(state: GameOfLife::States.alive) } +
                  (1..5).map { GameOfLife::Cell.new(state: GameOfLife::States.dead) }
     alive_cell = GameOfLife::Cell.new(state: GameOfLife::States.alive)
-    subsequent_cell = GameOfLife::Cell.subsequent_state(cell: alive_cell, neighbours: neighbours)
+    subsequent_cell = alive_cell.subsequent_state(neighbours: neighbours)
 
     subsequent_cell.alive?.must_equal true
   end
@@ -68,7 +68,7 @@ describe GameOfLife::Cell do
     neighbours = (1..3).map { GameOfLife::Cell.new(state: GameOfLife::States.alive) } +
                  (1..5).map { GameOfLife::Cell.new(state: GameOfLife::States.dead) }
     dead_cell = GameOfLife::Cell.new(state: GameOfLife::States.dead)
-    subsequent_cell = GameOfLife::Cell.subsequent_state(cell: dead_cell, neighbours: neighbours)
+    subsequent_cell = dead_cell.subsequent_state(neighbours: neighbours)
 
     subsequent_cell.alive?.must_equal true
   end
@@ -77,7 +77,7 @@ describe GameOfLife::Cell do
     neighbours = [GameOfLife::Cell.new(state: GameOfLife::States.alive)] +
                  (1..7).map { GameOfLife::Cell.new(state: GameOfLife::States.dead) }
     dead_cell = GameOfLife::Cell.new(state: GameOfLife::States.dead)
-    subsequent_cell = GameOfLife::Cell.subsequent_state(cell: dead_cell, neighbours: neighbours)
+    subsequent_cell = dead_cell.subsequent_state(neighbours: neighbours)
 
     subsequent_cell.dead?.must_equal true
   end
@@ -86,7 +86,7 @@ describe GameOfLife::Cell do
     neighbours = (1..4).map { GameOfLife::Cell.new(state: GameOfLife::States.alive) } +
                  (1..4).map { GameOfLife::Cell.new(state: GameOfLife::States.dead) }
     dead_cell = GameOfLife::Cell.new(state: GameOfLife::States.dead)
-    subsequent_cell = GameOfLife::Cell.subsequent_state(cell: dead_cell, neighbours: neighbours)
+    subsequent_cell = dead_cell.subsequent_state(neighbours: neighbours)
 
     subsequent_cell.dead?.must_equal true
   end
