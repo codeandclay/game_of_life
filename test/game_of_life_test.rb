@@ -45,6 +45,51 @@ describe GameOfLife::Cell do
     cell = GameOfLife::Cell.new_with_random_state
     [@alive_state, @dead_state].must_include cell.state
   end
+
+  it 'should generate a live cell from a living cell when given two live neighbours' do
+    neighbours = (1..2).map { GameOfLife::Cell.new(state: GameOfLife::States.alive) } +
+                 (1..6).map { GameOfLife::Cell.new(state: GameOfLife::States.dead) }
+    alive_cell = GameOfLife::Cell.new(state: GameOfLife::States.alive)
+    subsequent_cell = GameOfLife::Cell.subsequent_state(cell: alive_cell, neighbours: neighbours)
+
+    subsequent_cell.alive?.must_equal true
+  end
+
+  it 'should generate a live cell from a living cell when given three live neighbours' do
+    neighbours = (1..3).map { GameOfLife::Cell.new(state: GameOfLife::States.alive) } +
+                 (1..5).map { GameOfLife::Cell.new(state: GameOfLife::States.dead) }
+    alive_cell = GameOfLife::Cell.new(state: GameOfLife::States.alive)
+    subsequent_cell = GameOfLife::Cell.subsequent_state(cell: alive_cell, neighbours: neighbours)
+
+    subsequent_cell.alive?.must_equal true
+  end
+
+  it 'should generate a live cell from a dead cell when given three live neighbours' do
+    neighbours = (1..3).map { GameOfLife::Cell.new(state: GameOfLife::States.alive) } +
+                 (1..5).map { GameOfLife::Cell.new(state: GameOfLife::States.dead) }
+    dead_cell = GameOfLife::Cell.new(state: GameOfLife::States.dead)
+    subsequent_cell = GameOfLife::Cell.subsequent_state(cell: dead_cell, neighbours: neighbours)
+
+    subsequent_cell.alive?.must_equal true
+  end
+
+  it 'should generate a dead cell when given less than two live neighbours' do
+    neighbours = [GameOfLife::Cell.new(state: GameOfLife::States.alive)] +
+                 (1..7).map { GameOfLife::Cell.new(state: GameOfLife::States.dead) }
+    dead_cell = GameOfLife::Cell.new(state: GameOfLife::States.dead)
+    subsequent_cell = GameOfLife::Cell.subsequent_state(cell: dead_cell, neighbours: neighbours)
+
+    subsequent_cell.dead?.must_equal true
+  end
+
+  it 'should generate a dead cell when given more than three live neighbours' do
+    neighbours = (1..4).map { GameOfLife::Cell.new(state: GameOfLife::States.alive) } +
+                 (1..4).map { GameOfLife::Cell.new(state: GameOfLife::States.dead) }
+    dead_cell = GameOfLife::Cell.new(state: GameOfLife::States.dead)
+    subsequent_cell = GameOfLife::Cell.subsequent_state(cell: dead_cell, neighbours: neighbours)
+
+    subsequent_cell.dead?.must_equal true
+  end
 end
 
 describe GameOfLife::Grid do
