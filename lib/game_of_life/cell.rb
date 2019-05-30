@@ -24,7 +24,7 @@ class GameOfLife
 
     # Expects a cell object and an array of neighbours
     def subsequent_state(neighbours:)
-      alive_neighbours = neighbours.count(&:alive?)
+      alive_neighbours = neighbours.to_a.count(&:alive?)
 
       # Any live cell with two or three live neighbours lives on to the next
       # generation.

@@ -10,7 +10,7 @@ class GameOfLife
     end
 
     def to_a
-      @to_a ||= coordinates_of_neighbours.map do |coordinates|
+      coordinates_of_neighbours.map do |coordinates|
         grid.to_a[coordinates[0]][coordinates[1]]
       end
     end
