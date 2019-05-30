@@ -149,6 +149,10 @@ class GameOfLife
       end
     end
 
+    def count
+      to_a.count
+    end
+
     def coordinates_of_neighbours
       local_group - [[row, column]]
     end
