@@ -1,8 +1,16 @@
 # Game of Life
 
-This is my attempt at modelling [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) in Ruby.
+This is my attempt at modelling [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) in OO Ruby.
 
 The Game of Life models the life and death cycles of a population of cells on a two-dimensional grid.
+
+As it stands it's pretty sloooow. Grid sizes of 50x50 are fine – there's a noticeable lag with larger grids.
+
+You can run a simulation in the terminal:
+
+```bash
+> bundle exec ruby game_of_life_viewer.rb
+```
 
 ## The Rules
 
