@@ -15,9 +15,11 @@ def squares
   }
 end
 
-def print_grid(grid)
-  cursor = TTY::Cursor
+def cursor
+  TTY::Cursor
+end
 
+def print_grid(grid)
   grid.to_a.each do |row|
     row.each do |cell|
       print squares[cell.state]
@@ -28,18 +30,19 @@ def print_grid(grid)
 end
 
 # print_grid(grid)
+cursor.invisible do
+  loop do
+    print_grid(grid)
+    old_grid = grid
 
-loop do
-  print_grid(grid)
-  old_grid = grid
-
-  # Get the next state
-  grid = GameOfLife::Grid.new_from(grid: old_grid) do |row, col|
-    old_grid.to_a[row][col].subsequent_state(
-      neighbours: GameOfLife::Neighbours.new(
-        coordinates: [row, col], grid: old_grid
+    # Get the next state
+    grid = GameOfLife::Grid.new_from(grid: old_grid) do |row, col|
+      old_grid.to_a[row][col].subsequent_state(
+        neighbours: GameOfLife::Neighbours.new(
+          coordinates: [row, col], grid: old_grid
+        )
       )
-    )
+    end
+    # sleep(0.2)
   end
-  # sleep(0.2)
 end
