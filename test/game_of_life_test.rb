@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'test_helper'
-require_relative '../game_of_life'
+require_relative '../lib/game_of_life'
 
 describe GameOfLife::States do
   it 'should report the expected state for alive' do
