@@ -113,14 +113,14 @@ describe GameOfLife::Grid do
   end
 
   it 'should return a new grid when given an existing grid' do
-    new_grid = GameOfLife::Grid.new_from(grid: @random_grid)
-    new_grid.must_equal @random_grid
+    new_grid = GameOfLife::Grid.new_from(grid: @random_grid) { |row, col| @random_grid[row][col] }
+    new_grid.to_a.must_equal @random_grid
   end
 
   it 'should return a grid with values transformed when block is given' do
     grid_of_ones = Array.new(@size) { Array.new(@size, 1) }
     new_grid = GameOfLife::Grid.new_from(grid: @random_grid) { 1 }
-    new_grid.must_equal grid_of_ones
+    new_grid.to_a.must_equal grid_of_ones
   end
 
   it 'should give the grid coordinates of a cell when given that cell' do

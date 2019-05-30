@@ -97,7 +97,9 @@ class GameOfLife
     end
 
     def to_a
-      @to_a ||= Array.new(size) { Array.new(size) { block.call } }
+      @to_a ||= Array.new(size) do |row|
+        Array.new(size) { |col| block&.call(row, col) }
+      end
     end
 
     # Maps items to the coordinates of their grid cells.
@@ -119,20 +121,18 @@ class GameOfLife
     end
 
     # Returns a new grid from a given grid. A block may be given to transform
-    # each item in the grid.
-    def self.new_from(grid:)
-      grid.map do |row|
-        row.map do |cell|
-          next cell unless block_given?
+    # each item in the grid. The block has access to row and col parameters.
+    def self.new_from(grid:, &block)
+      return new(grid.size) unless block_given?
 
-          yield cell
-        end
-      end
+      new(grid.size, &block)
     end
+
+    attr_accessor :size
 
     private
 
-    attr_accessor :size, :block
+    attr_accessor :block
   end
 
   # Determines the neigbouring items of a coordinate in a two dimensional grid
