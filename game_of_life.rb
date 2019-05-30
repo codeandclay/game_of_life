@@ -53,6 +53,14 @@ class GameOfLife
       @state = state
     end
 
+    def alive?
+      state == States.alive
+    end
+
+    def dead?
+      state == States.dead
+    end
+
     attr_accessor :state
 
     def self.new_with_random_state
