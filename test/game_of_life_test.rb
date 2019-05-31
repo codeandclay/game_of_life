@@ -151,28 +151,4 @@ describe GameOfLife::Neighbours do
     neighbours = GameOfLife::Neighbours.new(coordinates: middle, grid: grid).to_a
     neighbours[0].must_be_kind_of GameOfLife::Cell
   end
-
-  it 'should wrap the coordinates if target cell is at the edge of the grid' do
-    grid = GameOfLife::Grid.new_random(size: 4)
-    middle = [3, 0]
-    neighbours = GameOfLife::Neighbours.new(
-      coordinates: middle, grid: grid
-    ).coordinates_of_neighbours
-    expected = [
-      [2, 3], [2, 0], [2, 1], [3, 3], [3, 1], [0, 3], [0, 0], [0, 1]
-    ]
-    (neighbours - expected).must_be_empty
-  end
-
-  it 'should wrap the coordinates if the target cell is at the opposite end of the grid' do
-    grid = GameOfLife::Grid.new_random(size: 4)
-    middle = [0, 3]
-    neighbours = GameOfLife::Neighbours.new(
-      coordinates: middle, grid: grid
-    ).coordinates_of_neighbours
-    expected = [
-      [3, 2], [0, 2], [1, 2], [3, 3], [1, 3], [3, 0], [0, 0], [1, 0]
-    ]
-    (neighbours - expected).must_be_empty
-  end
 end

@@ -10,41 +10,30 @@ class GameOfLife
     end
 
     def to_a
-      coordinates_of_neighbours.map do |coordinates|
-        grid.to_a[coordinates[0]][coordinates[1]]
-      end
+      @to_a = local_group.reject.with_index { |_, i| i == 4 }
     end
 
     def count
       to_a.count
     end
 
-    def coordinates_of_neighbours
-      local_group - [[row, column]]
-    end
-
     private
 
     attr_accessor :grid, :row, :column
 
-    # Coordinates of original grid cell and its neighbours.
-    # (Columns and rows wrap.)
+    # The original cell plus the 8 cells that surround it
     def local_group
-      @local_group ||= (-1..1).flat_map do |row_rotation|
-        rotated_row = row_axis.rotate(row_rotation)
-        (-1..1).map do |column_rotation|
-          rotated_column = column_axis.rotate(column_rotation)
-          [rotated_row[row], rotated_column[column]]
-        end
+      (grid.to_a * 3)[row_before, 3].flat_map do |grid_row|
+        (grid_row.to_a * 3)[column_before, 3]
       end
     end
 
-    def row_axis
-      (0...grid.to_a.count).to_a
+    def row_before
+      grid.size + (row - 1)
     end
 
-    def column_axis
-      (0...grid.to_a[0].count).to_a
+    def column_before
+      grid.size + (column - 1)
     end
   end
 end

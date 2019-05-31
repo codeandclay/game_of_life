@@ -4,8 +4,6 @@ This is my attempt at modelling [Conway's Game of Life](https://en.wikipedia.org
 
 The Game of Life models the life and death cycles of a population of cells on a two-dimensional grid.
 
-As it stands it's pretty sloooow. Grid sizes of 50x50 are fine – there's a noticeable lag with larger grids.
-
 You can run a simulation in the terminal:
 
 ```bash
