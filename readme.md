@@ -7,7 +7,7 @@ The Game of Life models the life and death cycles of a population of cells on a 
 You can run a simulation in the terminal:
 
 ```bash
-> bundle exec ruby game_of_life_viewer.rb
+> bundle exec game_of_life_viewer.rb
 ```
 
 ## The Rules
