@@ -34,7 +34,7 @@ GEM
     ruby-progressbar (1.10.0)
     tty-cursor (0.7.0)
     unicode-display_width (1.6.0)
-    yard (0.9.19)
+    yard (0.9.20)
 
 PLATFORMS
   ruby
